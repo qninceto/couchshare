@@ -1,4 +1,4 @@
-package ittalents.couchshare.model.DAO.userInformation;
+package ittalents.couchshare.model.POJO.userInformation;
 
 import java.io.File;
 import java.time.*;
@@ -23,7 +23,6 @@ public class PersonalInformation {
 	// initialize in the constructor
 	// izbira se ot dropDowns
 	// create functions!!!
-	// taka li da q syhranqvam ili razbita?
 	// tova dali go nqma gotovo v nqkoq biblioteka???
 	private LocalDate dateOfBirth;
 
@@ -32,10 +31,10 @@ public class PersonalInformation {
 	}
 	// same for the year and the day
 
-	private enum Gender {
-		FEMALE, MALE, OTHER
-	}
-	private Gender myGender;
+//	private enum Gender {
+//		FEMALE, MALE, OTHER
+//	}
+	private String myGender;
 
 	private String occupation = "";
 
@@ -61,7 +60,7 @@ public class PersonalInformation {
 	private String aboutMe = "";
 	private String whyIAmOnCouchsurfing = "";
 	private String myInterests = "";
-	private String myFavouriteBooksMooviesMusic = "";
+//	private String myFavouriteBooksMooviesMusic = "";
 	// more stuff comes here
 	// ....
 

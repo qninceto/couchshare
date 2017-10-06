@@ -1,4 +1,4 @@
-package ittalents.couchshare.model.DAO.userInformation;
+package ittalents.couchshare.model.POJO.userInformation;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
