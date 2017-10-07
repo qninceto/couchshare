@@ -32,7 +32,7 @@ public class User {
 	 */
 
 	private LocalDateTime lastBeingOnline;
-
+//kusno
 	private enum UserStatus {
 		ACCEPTING_GUESTS, NON_ACCEPTING_GUESTS, MAYBE, WANTS_TO_HANG_OUT
 	}
