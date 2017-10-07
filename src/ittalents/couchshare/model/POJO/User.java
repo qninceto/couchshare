@@ -8,11 +8,7 @@ public class User {
 //	private PersonalInformation myPersonalInformation;
 //	private HomeInformation myHomeInformation;
 
-//	private enum HostingAvailability {
-//		MEET_UP, ACCEPTING, NOT_ACCEPTING, MAYBE_ACCEPTING
-//	}
 
-//	private HostingAvailability currentAvailability;
 
 //	private Collection<File> myPhotoes;
 //	private File profilePicture;
@@ -115,6 +111,17 @@ public class User {
 			return this.index;
 		}
 	}
+		private enum HostingAvailability {
+		MEET_UP(1), ACCEPTING(2), NOT_ACCEPTING(3), MAYBE_ACCEPTING(4);
+			private int index;
+			private HostingAvailability(int index) {
+				this.index=index;
+			}
+			public int getIndex(){
+				return this.index;
+			}
+	}
+
 
 	private int id;
 	private String userName ;
@@ -127,6 +134,32 @@ public class User {
 	private Gender gender;
 	private String ocupation;
 	private String eduction;
+	private City city;
+	private String aboutMe;
+	private String resonsToSurf;
+	private String interests;
+	private int maxGuests;
+	private boolean smokingAllowed;
+	private HostingAvailability currentHostingAvailability;
+	private SimpleDateFormat dateOfRegistration;
+	
+	
+	public User(int id, String userName, String userPassword,
+			String email, String firstName, String lastName,
+			SimpleDateFormat dateOfBirth, Gender gender, City city) {
+		super();
+		this.id = id;
+		this.userName = userName;
+		this.userPassword = userPassword;
+		this.email = email;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.dateOfBirth = dateOfBirth;
+		this.gender = gender;
+		this.city = city;
+		this.dateOfRegistration = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
+	}
+	
 	
 	
 
