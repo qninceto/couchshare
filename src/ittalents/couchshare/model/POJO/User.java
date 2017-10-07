@@ -1,7 +1,9 @@
 package ittalents.couchshare.model.POJO;
 
 import java.io.File;
+import java.sql.Date;
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
 import java.util.Collection;
 public class User {
 	// intialize in the constructor:
@@ -130,7 +132,7 @@ public class User {
 	private String firstName;
 	private String lastName;
 	private String phone;
-	private SimpleDateFormat dateOfBirth;
+	private Date dateOfBirth;
 	private Gender gender;
 	private String ocupation;
 	private String eduction;
@@ -141,12 +143,12 @@ public class User {
 	private int maxGuests;
 	private boolean smokingAllowed;
 	private HostingAvailability currentHostingAvailability;
-	private SimpleDateFormat dateOfRegistration;
+	private LocalDateTime dateOfRegistration;
 	
 	
 	public User(int id, String userName, String userPassword,
 			String email, String firstName, String lastName,
-			SimpleDateFormat dateOfBirth, Gender gender, City city) {
+			Date dateOfBirth, Gender gender, City city) {
 		super();
 		this.id = id;
 		this.userName = userName;
@@ -157,7 +159,188 @@ public class User {
 		this.dateOfBirth = dateOfBirth;
 		this.gender = gender;
 		this.city = city;
-		this.dateOfRegistration = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
+		
+		this.dateOfRegistration = LocalDateTime.now();
+	}
+
+
+	public int getId() {
+		return id;
+	}
+
+
+	public String getUserName() {
+		return userName;
+	}
+
+
+	public String getUserPassword() {
+		return userPassword;
+	}
+
+
+	public String getEmail() {
+		return email;
+	}
+
+
+	public String getFirstName() {
+		return firstName;
+	}
+
+
+	public String getLastName() {
+		return lastName;
+	}
+
+
+	public String getPhone() {
+		return phone;
+	}
+
+
+	public Date getDateOfBirth() {
+		return dateOfBirth;
+	}
+
+
+	public Gender getGender() {
+		return gender;
+	}
+
+
+	public String getOcupation() {
+		return ocupation;
+	}
+
+
+	public String getEduction() {
+		return eduction;
+	}
+
+
+	public City getCity() {
+		return city;
+	}
+
+
+	public String getAboutMe() {
+		return aboutMe;
+	}
+
+
+	public String getResonsToSurf() {
+		return resonsToSurf;
+	}
+
+
+	public String getInterests() {
+		return interests;
+	}
+
+
+	public int getMaxGuests() {
+		return maxGuests;
+	}
+
+
+	public boolean isSmokingAllowed() {
+		return smokingAllowed;
+	}
+
+
+	public HostingAvailability getCurrentHostingAvailability() {
+		return currentHostingAvailability;
+	}
+
+
+	public LocalDateTime getDateOfRegistration() {
+		return dateOfRegistration;
+	}
+
+
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
+
+
+	public void setUserPassword(String userPassword) {
+		this.userPassword = userPassword;
+	}
+
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+
+
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+
+
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+
+
+	public void setDateOfBirth(Date dateOfBirth) {
+		this.dateOfBirth = dateOfBirth;
+	}
+
+
+	public void setGender(Gender gender) {
+		this.gender = gender;
+	}
+
+
+	public void setOcupation(String ocupation) {
+		this.ocupation = ocupation;
+	}
+
+
+	public void setEduction(String eduction) {
+		this.eduction = eduction;
+	}
+
+
+	public void setCity(City city) {
+		this.city = city;
+	}
+
+
+	public void setAboutMe(String aboutMe) {
+		this.aboutMe = aboutMe;
+	}
+
+
+	public void setResonsToSurf(String resonsToSurf) {
+		this.resonsToSurf = resonsToSurf;
+	}
+
+
+	public void setInterests(String interests) {
+		this.interests = interests;
+	}
+
+
+	public void setMaxGuests(int maxGuests) {
+		this.maxGuests = maxGuests;
+	}
+
+
+	public void setSmokingAllowed(boolean smokingAllowed) {
+		this.smokingAllowed = smokingAllowed;
+	}
+
+
+	public void setCurrentHostingAvailability(HostingAvailability currentHostingAvailability) {
+		this.currentHostingAvailability = currentHostingAvailability;
 	}
 	
 	
