@@ -4,6 +4,8 @@ import java.io.File;
 import java.time.*;
 import java.util.*;
 
+import ittalents.couchshare.model.POJO.City;
+import ittalents.couchshare.model.POJO.Country;
 import ittalents.couchshare.model.POJO.Language;
 import ittalents.couchshare.model.POJO.User;
 import locations.*;

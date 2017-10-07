@@ -10,8 +10,6 @@ import javax.imageio.ImageIO;
 
 import com.sun.prism.Image;
 
-import locations.City;
-
 public class Event {
 	private Collection<User> participants;
 	private int maxNumberParticipants;

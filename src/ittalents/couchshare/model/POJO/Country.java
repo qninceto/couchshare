@@ -1,4 +1,4 @@
-package locations;
+package ittalents.couchshare.model.POJO;
 
 import java.util.*;
 

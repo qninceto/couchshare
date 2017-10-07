@@ -1,6 +1,6 @@
 package homePage;
 
-import locations.Country;
+import ittalents.couchshare.model.POJO.Country;
 
 public class HomePage {
 List<User> allUsers;

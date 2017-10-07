@@ -1,10 +1,7 @@
-package locations;
+package ittalents.couchshare.model.POJO;
 
 import java.io.File;
 import java.util.*;
-
-import ittalents.couchshare.model.POJO.Event;
-import ittalents.couchshare.model.POJO.User;
 
 public class City {
 	private String name;
