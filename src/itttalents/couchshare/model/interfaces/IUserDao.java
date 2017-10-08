@@ -1,4 +1,4 @@
-package ittalents.couchshare.model.DAO;
+package itttalents.couchshare.model.interfaces;
 
 
 import ittalents.couchshare.model.POJO.User;

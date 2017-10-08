@@ -12,6 +12,7 @@ import ittalents.couchshare.model.POJO.User;
 import ittalents.couchshare.model.POJO.User.Gender;
 import ittalents.couchshare.model.POJO.User.HostingAvailability;
 import ittalents.couchshare.model.exception.UserException;
+import itttalents.couchshare.model.interfaces.IUserDao;
 
 public class UserDAO extends AbstractDBConnDAO implements IUserDao {
 
