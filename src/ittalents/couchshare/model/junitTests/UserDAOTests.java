@@ -19,16 +19,29 @@ public class UserDAOTests {
 
 	@Test
 	public void test() throws UserException {
-		System.out.println(Gender.F.getIndex());
+		
 		UserDAO user = new UserDAO();
-		Country c = new Country( "bg");
-		City ci = new City( "sofia", c);
+		Country c = new Country( "Palestine");
+		City ci = new City( 999,"gaza", c);
+		
 //		Date d = new LocalDate().now();
 		Date d =Date.valueOf("2013-09-04");
 
 
-		user.registerUser(new User( "test", "test", "test", "test", "test", d, Gender.F, ci));
-		user.changeUserFirstName(10);
+//	user.registerUser(new User( "test12", "test12", "test12", "test12", "test12", d, Gender.F, ci).getId());
+//		user.changeUserFirstName(1);
+//	user.changeUserGender(1, Gender.M);
+//		user.changeUserPhone(1);
+//		user.changeUserCity(1, ci);
+//		user.changeUserEmail(1);
+//		user.changeUserPAssword(1);
+//		user.mpChangeUserEduction(1);
+//		user.mpChangeUserOccupation(1);
+//		user.mpChangeUserAboutMe(1);
+//		user.mpChangeUserResonsToSurf(1);
+//		user.mpChangeUserInterests(1);
+user.mpChangeUserHomeDescription(1);
+
 	}
 
 }
