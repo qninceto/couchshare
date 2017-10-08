@@ -6,10 +6,13 @@ public class Country {
 private int id;
 private String name;
 
-public Country(int id, String name) {
-	super();
-	this.id = id;
+public Country( String name) {
 	this.name = name;
+}
+public Country(int id, String name) {
+	this(name);
+	this.id = id;
+
 }
 
 public int getId() {

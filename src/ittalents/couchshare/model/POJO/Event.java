@@ -11,58 +11,29 @@ import javax.imageio.ImageIO;
 import com.sun.prism.Image;
 
 public class Event {
-	private Collection<User> participants;
+	// private Collection<User> participants;
+	// private Collection<Post> comments;
+	// private File pictureOfTheEvent;
+	private int id;
 	private int maxNumberParticipants;
 	private String name;
-	private User organizer;
+	private User creator;
+	private LocalDateTime timeOTheEvent;
 	private String description;
-
-	// take from a map???????
 	private String address;
-
 	private City location;
 
-	private LocalDateTime timeOTheEvent;
+	public Event(int id, int maxNumberParticipants, String name, User creator, LocalDateTime timeOTheEvent,
+			String description, String address, City location) {
 
-	private Collection<Post> comments;
-
-	private File pictureOfTheEvent;
-
-//constructor for the event *2
-	public Event(User organizer, String name, City location, LocalDateTime timeOTheEvent, int maxNumberParticipants,
-			String description, String address, File pictureOfTheEvent) {
-
+		setId(id);
 		setName(name);
 		setMaxNumberParticipants(maxNumberParticipants);
-		setOrganizer(organizer);
+		setCreator(creator);
+		setTimeOTheEvent(timeOTheEvent);
 		setDescription(description);
 		setAddress(address);
 		setLocation(location);
-		setTimeOTheEvent(timeOTheEvent);
-		setPictureOfTheEvent(pictureOfTheEvent);
-	}
-
-	// method for validation for picture start need to be checked *1
-	private boolean validPic(File pic) {
-		try {
-			BufferedImage image = ImageIO.read(pic);
-			if (image == null) {
-				System.out.println("The file" + name + "could not be opened , it is not an image");
-				return false;
-
-			}
-		} catch (IOException ex) {
-			System.out.println("The file" + name + "could not be opened , an error occurred.");
-			return false;
-		}
-		return true;
-	}
-	// method for validation for picture end
-
-	public void setPictureOfTheEvent(File pictureOfTheEvent) {
-		if (validPic(pictureOfTheEvent) && pictureOfTheEvent != null)
-
-			this.pictureOfTheEvent = pictureOfTheEvent;
 	}
 
 	public void setMaxNumberParticipants(int maxNumberParticipants) {
@@ -79,12 +50,6 @@ public class Event {
 			this.name = name;
 		} else {
 			System.out.println("The name of the event should at least 8 characters ");
-		}
-	}
-
-	public void setOrganizer(User organizer) {
-		if (organizer != null) {
-			this.organizer = organizer;
 		}
 	}
 
@@ -114,6 +79,22 @@ public class Event {
 		} else {
 			System.out.println("You can not have an event in the past");
 		}
+	}
+
+	public User getCreator() {
+		return creator;
+	}
+
+	public void setCreator(User creator) {
+		this.creator = creator;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 
 }

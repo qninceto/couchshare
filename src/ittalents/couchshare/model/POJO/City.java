@@ -10,12 +10,14 @@ public class City {
 	private   Country country;
 	
 	
-	
-	public City(int id, String name, Country country) {
-		
-		this.id = id;
+	public City(String name, Country country){
 		this.name = name;
 		this.country = country;
+	}
+	public City(int id, String name, Country country) {
+		this(name, country);
+		this.id = id;
+
 	}
 	public int getId() {
 		return id;

@@ -9,5 +9,4 @@ public abstract class AbstractDBConnDAO {
 	public static Connection getCon() {
 		return con;
 	}
-//
 }

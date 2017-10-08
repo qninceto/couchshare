@@ -10,7 +10,7 @@ public class HomeInformation {
 	private enum DayOfTheWeek{
 		MON, TUE,WEN, THU,FRI,SAT,SUN
 	}
-	private  Map<DayOfTheWeek,Boolean> availabelNightsToHost = new LinkedHashMap<>();
+	private  Map<DayOfTheWeek,Boolean> availabelNightsToHost = new LinkedHashMap<DayOfTheWeek,Boolean>();
 	/* setting default values:
 	should go to a method and in the constructor:
 	checkBox to set the value to t/f 
