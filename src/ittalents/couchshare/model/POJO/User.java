@@ -8,7 +8,7 @@ import java.sql.Timestamp;
 public class User {
 	
 	public enum Gender {
-		F(1), M(2), O(3);
+		M(1), F(2), O(3);
 		private int index;
 
 		private Gender(int index) {
@@ -20,7 +20,7 @@ public class User {
 		}
 	}
 
-	private enum HostingAvailability {
+	public enum HostingAvailability {
 		MEET_UP(1), ACCEPTING(2), NOT_ACCEPTING(3), MAYBE_ACCEPTING(4);
 		private int index;
 
@@ -28,7 +28,7 @@ public class User {
 			this.index = index;
 		}
 
-		public int getIndex() {
+		public  int getIndex() {
 			return this.index;
 		}
 	}
