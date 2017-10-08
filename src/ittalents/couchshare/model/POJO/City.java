@@ -1,12 +1,9 @@
 package ittalents.couchshare.model.POJO;
 
-import java.io.File;
-import java.util.*;
 
 public class City {
 	private int id;
 	private String name;
-	private String description;
 	private   Country country;
 	
 	
@@ -25,20 +22,18 @@ public class City {
 	public String getName() {
 		return name;
 	}
-	public String getDescription() {
-		return description;
-	}
 	public Country getCountry() {
 		return country;
 	}
 	public void setName(String name) {
 		this.name = name;
 	}
-	public void setDescription(String description) {
-		this.description = description;
-	}
 	public void setCountry(Country country) {
 		this.country = country;
+	}
+	@Override
+	public String toString() {
+		return "City [id=" + id + ", name=" + name + ", country=" + country + "]";
 	}
 	
 	

@@ -22,5 +22,8 @@ connection without server's identity verification is not recommended.
 3. exception v unit test NE se hva6ta !!!!
 
 4. klasa Date  ili timeStamp
-
 https://www.mkyong.com/java/how-to-get-current-timestamps-in-java/
+
+5.dobavqne na exceptions na vsi4ki dao methods i dobavqne v interface!!!!
+
+6.kato vry6tame spisyci --->po dobre sys obiknoven Statement, ponezhe prepared statement e po baven

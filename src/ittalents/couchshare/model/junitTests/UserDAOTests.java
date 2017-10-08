@@ -18,17 +18,21 @@ import ittalents.couchshare.model.exception.UserException;
 public class UserDAOTests {
 
 	@Test
-	public void test() throws UserException {
-		System.out.println(Gender.F.getIndex());
+	public UserDAO testCreateUser() throws UserException {
+//		System.out.println(Gender.F.getIndex());
 		UserDAO user = new UserDAO();
-		Country c = new Country( "bg");
-		City ci = new City( "sofia", c);
+		Country c = new Country(2, "Bulgaria");
+		City ci = new City(3, "Sofia", c);
 //		Date d = new LocalDate().now();
 		Date d =Date.valueOf("2013-09-04");
 
-
-		user.registerUser(new User( "test", "test", "test", "test", "test", d, Gender.F, ci));
-		user.changeUserFirstName(10);
+		User newUser=new User( "amtest", "amtest", "amtest", "amtest", "amtest", d, Gender.F, ci);
+		user.registerUser(newUser);
+		return user;
 	}
-
+	
+	@Test
+	public void changeUserInformation() throws UserException {
+		testCreateUser().changeUserFirstName(10);
+	}
 }

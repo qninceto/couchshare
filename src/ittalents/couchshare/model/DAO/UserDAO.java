@@ -16,7 +16,8 @@ public class UserDAO extends AbstractDBConnDAO implements IUserDao{
 	private static final String UPDATE_USERS_USER_NAME = "UPDATE users SET user_name = ? WHERE id =?; ";
 
 	private static final String INSERT_USER_INTO_DB = "INSERT into users values(null,?,?,?,?,?,null,?,"
-			+ "?,null,null,null,?,null,null,null,null,null,null,null);";
+			+ "?,null,null,?,null,null,null,null,null,null,null,null);";
+	
 
 	public int registerUser(User user) throws UserException  {
 		try {
@@ -32,12 +33,12 @@ public class UserDAO extends AbstractDBConnDAO implements IUserDao{
 //			ps.setDate(9, java.sql.Date.valueOf(user.getDateOfRegistration().toLocalDate()));
 			ps.executeUpdate();
 			ResultSet rs = ps.getGeneratedKeys();
-			rs.next();//lipsva while????
+			rs.next();
 			return rs.getInt(1);
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
-			throw new UserException("" );
+			throw new UserException("Cannot register user",e);
 		}
 	}
 

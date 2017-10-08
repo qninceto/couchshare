@@ -1,14 +1,6 @@
 package ittalents.couchshare.model.POJO;
 
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
-import java.time.LocalDateTime;
-import java.util.Collection;
-
-import javax.imageio.ImageIO;
-
-import com.sun.prism.Image;
+import java.sql.Date;
 
 public class Event {
 	// private Collection<User> participants;
@@ -18,15 +10,13 @@ public class Event {
 	private int maxNumberParticipants;
 	private String name;
 	private User creator;
-	private LocalDateTime timeOTheEvent;
+	private Date timeOfTheEvent;
 	private String description;
 	private String address;
 	private City location;
 
-	public Event(int id, int maxNumberParticipants, String name, User creator, LocalDateTime timeOTheEvent,
-			String description, String address, City location) {
-
-		setId(id);
+	public Event(int maxNumberParticipants, String name, User creator, Date timeOTheEvent, String description,
+			String address, City location) {
 		setName(name);
 		setMaxNumberParticipants(maxNumberParticipants);
 		setCreator(creator);
@@ -34,6 +24,12 @@ public class Event {
 		setDescription(description);
 		setAddress(address);
 		setLocation(location);
+	}
+
+	public Event(int id, int maxNumberParticipants, String name, User creator, Date timeOTheEvent, String description,
+			String address, City location) {
+		this(maxNumberParticipants, name, creator, timeOTheEvent, description, address, location);
+		this.id = id;
 	}
 
 	public void setMaxNumberParticipants(int maxNumberParticipants) {
@@ -73,9 +69,11 @@ public class Event {
 		}
 	}
 
-	public void setTimeOTheEvent(LocalDateTime timeOTheEvent) {
-		if (timeOTheEvent != null && timeOTheEvent.isAfter(LocalDateTime.now())) {
-			this.timeOTheEvent = timeOTheEvent;
+	public void setTimeOTheEvent(Date timeOTheEvent) {
+		if (timeOTheEvent != null) {
+			// validiraj:
+			// && timeOTheEvent.isAfter(Date.valueOf())) {
+			this.timeOfTheEvent = timeOTheEvent;
 		} else {
 			System.out.println("You can not have an event in the past");
 		}
@@ -93,8 +91,28 @@ public class Event {
 		return id;
 	}
 
-	public void setId(int id) {
-		this.id = id;
+	public int getMaxNumberParticipants() {
+		return maxNumberParticipants;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public Date getTimeOTheEvent() {
+		return timeOfTheEvent;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public String getAddress() {
+		return address;
+	}
+
+	public City getLocation() {
+		return location;
 	}
 
 }
