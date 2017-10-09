@@ -3,9 +3,6 @@ package ittalents.couchshare.model.POJO;
 import java.sql.Date;
 
 public class Event {
-	// private Collection<User> participants;
-	// private Collection<Post> comments;
-	// private File pictureOfTheEvent;
 	private int id;
 	private int maxNumberParticipants;
 	private String name;
@@ -13,22 +10,24 @@ public class Event {
 	private Date timeOfTheEvent;
 	private String description;
 	private String address;
-	private City location;
+	private String city;
+	private String country;
 
 	public Event(int maxNumberParticipants, String name, User creator, Date timeOTheEvent, String description,
-			String address, City location) {
+			String address, String city, String country) {
 		setName(name);
 		setMaxNumberParticipants(maxNumberParticipants);
 		setCreator(creator);
 		setTimeOTheEvent(timeOTheEvent);
 		setDescription(description);
 		setAddress(address);
-		setLocation(location);
+		setCity(city);
+		setCountry(country);
 	}
 
 	public Event(int id, int maxNumberParticipants, String name, User creator, Date timeOTheEvent, String description,
-			String address, City location) {
-		this(maxNumberParticipants, name, creator, timeOTheEvent, description, address, location);
+			String address, String city, String country) {
+		this(maxNumberParticipants, name, creator, timeOTheEvent, description, address, city,country);
 		this.id = id;
 	}
 
@@ -63,9 +62,9 @@ public class Event {
 		}
 	}
 
-	public void setLocation(City location) {
+	public void setCity(String location) {
 		if (location != null) {
-			this.location = location;
+			this.city = location;
 		}
 	}
 
@@ -111,8 +110,16 @@ public class Event {
 		return address;
 	}
 
-	public City getLocation() {
-		return location;
+	public String getCity() {
+		return city;
+	}
+
+	public String getCountry() {
+		return country;
+	}
+
+	public void setCountry(String country) {
+		this.country = country;
 	}
 
 }

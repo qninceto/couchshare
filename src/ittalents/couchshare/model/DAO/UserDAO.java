@@ -8,10 +8,13 @@ import java.text.SimpleDateFormat;
 import java.util.Scanner;
 
 import ittalents.couchshare.model.POJO.City;
+import ittalents.couchshare.model.POJO.Event;
 import ittalents.couchshare.model.POJO.User;
 import ittalents.couchshare.model.POJO.User.Gender;
 import ittalents.couchshare.model.POJO.User.HostingAvailability;
+import ittalents.couchshare.model.exception.EventException;
 import ittalents.couchshare.model.exception.UserException;
+import itttalents.couchshare.model.interfaces.IEventDAO;
 import itttalents.couchshare.model.interfaces.IUserDao;
 
 public class UserDAO extends AbstractDBConnDAO implements IUserDao {
@@ -33,10 +36,42 @@ public class UserDAO extends AbstractDBConnDAO implements IUserDao {
 	private static final String UPDATE_USERS_FIRST_NAME = "UPDATE users SET first_name = ? WHERE id =?; ";
 	private static final String UPDATE_USERS_LAST_NAME = "UPDATE users SET last_name = ? WHERE id =?; ";
 	private static final String UPDATE_USERS_USER_NAME = "UPDATE users SET user_name = ? WHERE id =?; ";
+	private static final String SELECT_USER_BY_ID_QUERY = "SELECT * FROM users WHERE id = ?";
 
 	private static final String INSERT_USER_INTO_DB = "INSERT into users values(null,?,?,?,?,?,null,?,"
 			+ "?,null,null,?,null,null,null,null,null,null,null,null);";
 
+	public void createEvent(int userId,Event event) throws EventException, UserException{
+		IEventDAO eventDao =new EventDAO();
+			eventDao.addEvent(event);
+			this.joinEvent(event.getId(), userId);
+	}
+	
+	public boolean joinEvent(int eventId, int userId) throws UserException {
+		Statement statement;
+		try {
+			statement = getCon().createStatement();
+			//TODO 
+			statement.executeUpdate("insert into events_participants values(" + userId + "," + eventId + ");");
+			return true;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new UserException("Couldnt join the event with id" + eventId + " succesfully", e);
+		}
+	}
+
+	public boolean leaveEvent(int eventId, int userId) throws UserException {
+		Statement statement;
+		try {
+			statement = getCon().createStatement();
+			//TODO 
+			statement.executeUpdate("delete from events_participants where users_id="+eventId+" and events_id="+userId);
+			return true;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new UserException("Couldnt leave the event with id" + eventId + " succesfully", e);
+		}
+	}
 
 	public int registerUser(User user) throws UserException {
 		try {
@@ -59,7 +94,7 @@ public class UserDAO extends AbstractDBConnDAO implements IUserDao {
 
 		} catch (SQLException e) {
 			e.printStackTrace();
-			throw new UserException("Cannot register user",e);
+			throw new UserException("Cannot register user", e);
 		}
 	}
 	// ACCOUNT and Setting
@@ -361,7 +396,7 @@ public class UserDAO extends AbstractDBConnDAO implements IUserDao {
 		}
 
 	}
-	
+
 	public void mpChangeUserHomeDescription(int userID) {
 		try {
 			PreparedStatement ps = getCon().prepareStatement(UPDATE_USERS_HOME_DESCRIPTION);

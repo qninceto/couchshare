@@ -45,7 +45,7 @@ public class User {
 	private Gender gender;
 	private String ocupation;
 	private String eduction;
-	private City city;
+	private String city;
 	private String aboutMe;
 	private String resonsToSurf;
 	private String interests;
@@ -55,13 +55,13 @@ public class User {
 	private Timestamp dateOfRegistration;
 
 	public User(int id, String userName, String userPassword, String email, String firstName, String lastName,
-			Date dateOfBirth, Gender gender, City city) {
+			Date dateOfBirth, Gender gender, String city) {
 		this(userName, userPassword, email, firstName, lastName, dateOfBirth, gender, city);
 		this.id = id;
 	}
 
 	public User(String userName, String userPassword, String email, String firstName, String lastName, Date dateOfBirth,
-			Gender gender, City city) {
+			Gender gender, String city) {
 		this.userName = userName;
 		this.userPassword = userPassword;
 		this.email = email;
@@ -118,7 +118,7 @@ public class User {
 		return eduction;
 	}
 
-	public City getCity() {
+	public String getCity() {
 		return city;
 	}
 
@@ -190,7 +190,7 @@ public class User {
 		this.eduction = eduction;
 	}
 
-	public void setCity(City city) {
+	public void setCity(String city) {
 		this.city = city;
 	}
 
@@ -216,6 +216,11 @@ public class User {
 
 	public void setCurrentHostingAvailability(HostingAvailability currentHostingAvailability) {
 		this.currentHostingAvailability = currentHostingAvailability;
+	}
+
+	@Override
+	public String toString() {
+		return "User [userName=" + userName + ", city=" + city + "]";
 	}
 
 }
