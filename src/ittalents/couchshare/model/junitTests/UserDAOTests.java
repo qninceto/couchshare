@@ -9,10 +9,11 @@ import java.sql.SQLException;
 import org.junit.Test;
 
 import ittalents.couchshare.model.DAO.UserDAO;
+import ittalents.couchshare.model.DAO.UserDAO.Sections;
+import ittalents.couchshare.model.DAO.UserDAO.git;
 import ittalents.couchshare.model.POJO.City;
 import ittalents.couchshare.model.POJO.Country;
 import ittalents.couchshare.model.POJO.User;
-import ittalents.couchshare.model.POJO.User.Gender;
 import ittalents.couchshare.model.exception.UserException;
 
 public class UserDAOTests {
@@ -45,7 +46,7 @@ public class UserDAOTests {
 		Date d =Date.valueOf("2013-09-04");
 
 
-//	user.registerUser(new User( "test12", "test12", "test12", "test12", "test12", d, Gender.F, ci).getId());
+//         user.registerUser(new User("yla1", "yla1", "yla1", "yla1", "yla1", d, "female", "sofia"));
 //		user.changeUserFirstName(1);
 //	user.changeUserGender(1, Gender.M);
 //		user.changeUserPhone(1);
@@ -57,8 +58,17 @@ public class UserDAOTests {
 //		user.mpChangeUserAboutMe(1);
 //		user.mpChangeUserResonsToSurf(1);
 //		user.mpChangeUserInterests(1);
-user.mpChangeUserHomeDescription(1);
-
+//user.mpChangeUserHomeDescription(1);
+//		System.out.println(git.first_name.toString());
+////		user.changeUserFirstName(1, "lesh");
+//user.changeUserSections(1, Sections.education);
+//		user.changeUserGender(1,"other");
+//		user.changeUserCity(1, "plovdiv");
+//		user.UserAddLanguegeFluent(1, "russian");
+//		User f =user.getUserById(7);
+//		System.out.println(f.getCity());
+//user.addFriends(9, "yla");
+		user.changeUserSections(1, Sections.about_me);
 
 	}
 }
