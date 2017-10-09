@@ -1,6 +1,7 @@
 package ittalents.couchshare.model.POJO;
 
 import java.sql.Date;
+import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.Calendar;
 
@@ -8,13 +9,13 @@ public class Post {
 	private int id;
 	private String content;
 	private User author;
-	private final Date timeOfPosting;
+	private final Timestamp timeOfPosting;
 
 	public Post(String content, User author) {
 
 		this.content = content;
 		this.author = author;
-		this.timeOfPosting = new Date(Calendar.getInstance().getTime().getTime());
+		this.timeOfPosting =  new Timestamp(System.currentTimeMillis());
 	}
 
 	public Post(int id, String content, User author) {
@@ -35,7 +36,7 @@ public class Post {
 		return author;
 	}
 
-	public Date getTimeOfPosting() {
+	public Timestamp getTimeOfPosting() {
 		return timeOfPosting;
 	}
 }

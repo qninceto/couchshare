@@ -20,7 +20,7 @@ public class PostDAO extends AbstractDBConnDAO {
 				PreparedStatement ps = getCon().prepareStatement("insert into post values(null,?,?,?);",
 						PreparedStatement.RETURN_GENERATED_KEYS);
 				ps.setString(1, post.getContent());
-				ps.setDate(2, post.getTimeOfPosting());
+				ps.setTimestamp(2, post.getTimeOfPosting());
 				ps.setInt(3, post.getAuthor().getId());
 
 				ps.executeUpdate();
