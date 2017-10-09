@@ -7,32 +7,6 @@ import java.sql.Timestamp;
 
 public class User {
 	
-	public enum Gender {
-		M(1), F(2), O(3);
-		private int index;
-
-		private Gender(int index) {
-			this.index = index;
-		}
-
-		public int getIndex() {
-			return this.index;
-		}
-	}
-
-	public enum HostingAvailability {
-		MEET_UP(1), ACCEPTING(2), NOT_ACCEPTING(3), MAYBE_ACCEPTING(4);
-		private int index;
-
-		private HostingAvailability(int index) {
-			this.index = index;
-		}
-
-		public  int getIndex() {
-			return this.index;
-		}
-	}
-
 	private int id;
 	private String userName;
 	private String userPassword;
@@ -42,7 +16,7 @@ public class User {
 	private String phone;
 	//tozi date format li????
 	private Date dateOfBirth;
-	private Gender gender;
+	private String gender;
 	private String ocupation;
 	private String eduction;
 	private String city;
@@ -51,17 +25,19 @@ public class User {
 	private String interests;
 	private int maxGuests;
 	private boolean smokingAllowed;
-	private HostingAvailability currentHostingAvailability;
+	private String currentHostingAvailability;
 	private Timestamp dateOfRegistration;
 
 	public User(int id, String userName, String userPassword, String email, String firstName, String lastName,
-			Date dateOfBirth, Gender gender, String city) {
+
+			Date dateOfBirth, String gender, String city) {
 		this(userName, userPassword, email, firstName, lastName, dateOfBirth, gender, city);
 		this.id = id;
 	}
 
 	public User(String userName, String userPassword, String email, String firstName, String lastName, Date dateOfBirth,
-			Gender gender, String city) {
+
+			String gender, String city) {
 		this.userName = userName;
 		this.userPassword = userPassword;
 		this.email = email;
@@ -106,7 +82,7 @@ public class User {
 		return dateOfBirth;
 	}
 
-	public Gender getGender() {
+	public String getGender() {
 		return gender;
 	}
 
@@ -142,7 +118,7 @@ public class User {
 		return smokingAllowed;
 	}
 
-	public HostingAvailability getCurrentHostingAvailability() {
+	public String getCurrentHostingAvailability() {
 		return currentHostingAvailability;
 	}
 
@@ -178,7 +154,7 @@ public class User {
 		this.dateOfBirth = dateOfBirth;
 	}
 
-	public void setGender(Gender gender) {
+	public void setGender(String gender) {
 		this.gender = gender;
 	}
 
@@ -214,13 +190,14 @@ public class User {
 		this.smokingAllowed = smokingAllowed;
 	}
 
-	public void setCurrentHostingAvailability(HostingAvailability currentHostingAvailability) {
+	public void setCurrentHostingAvailability(String currentHostingAvailability) {
 		this.currentHostingAvailability = currentHostingAvailability;
 	}
 
 	@Override
 	public String toString() {
 		return "User [userName=" + userName + ", city=" + city + "]";
+
 	}
 
 }

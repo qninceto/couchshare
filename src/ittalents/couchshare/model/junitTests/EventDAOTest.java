@@ -8,7 +8,6 @@ import org.junit.Test;
 import ittalents.couchshare.model.DAO.EventDAO;
 import ittalents.couchshare.model.POJO.Event;
 import ittalents.couchshare.model.POJO.User;
-import ittalents.couchshare.model.POJO.User.Gender;
 import ittalents.couchshare.model.exception.EventException;
 
 public class EventDAOTest {
@@ -20,7 +19,7 @@ public class EventDAOTest {
 //		Country c = new Country(2, "Bulgaria");
 //		City ci = new City(2, "Burgas", c);
 		Date d =Date.valueOf("1987-01-25");
-		User user = new User(1,"pesho_pi4a", "123456", "pesho_pi4a@abv.bg", "pesho", "petrov", d, Gender.M, "Burgas");
+		User user = new User(1,"pesho_pi4a", "123456", "pesho_pi4a@abv.bg", "pesho", "petrov", d, "Male", "Burgas");
 		Date date = Date.valueOf("2018-09-04");
 		
 		

@@ -23,6 +23,7 @@ public abstract class AbstractCityDAO extends AbstractDBConnDAO {
 		}
 		return 0;
 	}
+	
 	public static String getCityName(int cityId) {
 		try {
 			Statement statement = getCon().createStatement();
