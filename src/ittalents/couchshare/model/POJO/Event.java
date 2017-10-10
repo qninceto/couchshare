@@ -1,19 +1,19 @@
 package ittalents.couchshare.model.POJO;
 
-import java.sql.Date;
+import java.sql.Timestamp;
 
 public class Event {
 	private int id;
 	private int maxNumberParticipants;
 	private String name;
 	private User creator;
-	private Date timeOfTheEvent;
+	private Timestamp timeOfTheEvent;
 	private String description;
 	private String address;
 	private String city;
 	private String country;
 
-	public Event(int maxNumberParticipants, String name, User creator, Date timeOTheEvent, String description,
+	public Event(int maxNumberParticipants, String name, User creator, Timestamp timeOTheEvent, String description,
 			String address, String city, String country) {
 		setName(name);
 		setMaxNumberParticipants(maxNumberParticipants);
@@ -25,7 +25,7 @@ public class Event {
 		setCountry(country);
 	}
 
-	public Event(int id, int maxNumberParticipants, String name, User creator, Date timeOTheEvent, String description,
+	public Event(int id, int maxNumberParticipants, String name, User creator, Timestamp timeOTheEvent, String description,
 			String address, String city, String country) {
 		this(maxNumberParticipants, name, creator, timeOTheEvent, description, address, city,country);
 		this.id = id;
@@ -49,11 +49,11 @@ public class Event {
 	}
 
 	public void setDescription(String description) {
-		if (description != null && description.length() >= 23) {
+//		if (description != null && description.length() >= 23) {
 			this.description = description;
-		} else {
-			System.out.println("The description of the event should at least 24 characters ");
-		}
+//		} else {
+//			System.out.println("The description of the event should at least 24 characters ");
+//		}
 	}
 
 	public void setAddress(String address) {
@@ -68,7 +68,7 @@ public class Event {
 		}
 	}
 
-	public void setTimeOTheEvent(Date timeOTheEvent) {
+	public void setTimeOTheEvent(Timestamp timeOTheEvent) {
 		if (timeOTheEvent != null) {
 			// validiraj:
 			// && timeOTheEvent.isAfter(Date.valueOf())) {
@@ -98,7 +98,7 @@ public class Event {
 		return name;
 	}
 
-	public Date getTimeOTheEvent() {
+	public Timestamp getTimeOTheEvent() {
 		return timeOfTheEvent;
 	}
 

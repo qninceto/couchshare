@@ -11,10 +11,8 @@ import org.junit.Test;
 import ittalents.couchshare.model.DAO.UserDAO;
 import ittalents.couchshare.model.DAO.UserDAO.Sections;
 import ittalents.couchshare.model.DAO.UserDAO.git;
-import ittalents.couchshare.model.POJO.City;
-import ittalents.couchshare.model.POJO.Country;
 import ittalents.couchshare.model.POJO.User;
-import ittalents.couchshare.model.exception.UserException;
+import ittalents.couchshare.model.exceptions.UserException;
 
 public class UserDAOTests {
 //ot yana merge:
@@ -39,8 +37,6 @@ public class UserDAOTests {
 	public void test() throws UserException {
 		
 		UserDAO user = new UserDAO();
-		Country c = new Country( "Palestine");
-		City ci = new City( 999,"gaza", c);
 		
 //		Date d = new LocalDate().now();
 		Date d =Date.valueOf("2013-09-04");

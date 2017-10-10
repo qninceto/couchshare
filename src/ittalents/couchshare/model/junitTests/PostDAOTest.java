@@ -7,7 +7,8 @@ import org.junit.Test;
 import ittalents.couchshare.model.DAO.PostDAO;
 import ittalents.couchshare.model.DAO.UserDAO;
 import ittalents.couchshare.model.POJO.Post;
-import ittalents.couchshare.model.exception.UserException;
+import ittalents.couchshare.model.exceptions.PostException;
+import ittalents.couchshare.model.exceptions.UserException;
 
 public class PostDAOTest {
 
@@ -20,7 +21,7 @@ public class PostDAOTest {
 
 	
 	@Test
-	public void testGetPostById() throws UserException {
+	public void testGetPostById() throws UserException, PostException {
 		Post p = new PostDAO().getPostById(1);
 		System.out.println(p.getAuthor());
 	}

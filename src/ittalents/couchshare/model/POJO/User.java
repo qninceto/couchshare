@@ -27,7 +27,7 @@ public class User {
 	private boolean smokingAllowed;
 	private String currentHostingAvailability;
 	private Timestamp dateOfRegistration;
-
+//TODO---->ADD DATE OF REGISTRATION TO RETRIEVE CONSTRUCTOR!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 	public User(int id, String userName, String userPassword, String email, String firstName, String lastName,
 
 			Date dateOfBirth, String gender, String city) {

@@ -9,7 +9,7 @@ public class Post {
 	private int id;
 	private String content;
 	private User author;
-	private final Timestamp timeOfPosting;
+	private Timestamp timeOfPosting;
 
 	public Post(String content, User author) {
 
@@ -18,9 +18,10 @@ public class Post {
 		this.timeOfPosting =  new Timestamp(System.currentTimeMillis());
 	}
 
-	public Post(int id, String content, User author) {
+	public Post(int id, String content, User author,Timestamp timeOfPosting) {
 		this(content, author);
 		this.id = id;
+		this.timeOfPosting=timeOfPosting;
 
 	}
 

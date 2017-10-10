@@ -1,6 +1,5 @@
 package ittalents.couchshare.model.DAO;
 
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -8,12 +7,12 @@ import java.sql.Statement;
 
 import ittalents.couchshare.model.POJO.Post;
 import ittalents.couchshare.model.POJO.Reference;
-import ittalents.couchshare.model.POJO.User;
-import ittalents.couchshare.model.exception.UserException;
+import ittalents.couchshare.model.exceptions.PostException;
+import ittalents.couchshare.model.exceptions.UserException;
 
 public class ReferenceDAO extends AbstractDBConnDAO {
 
-	public void addReference(Reference reference) {
+	public void addReference(Reference reference) throws PostException {
 		if (reference != null) {
 			try {
 				int i=new PostDAO().addPost(new Post(reference.getContent(), reference.getAuthor()));

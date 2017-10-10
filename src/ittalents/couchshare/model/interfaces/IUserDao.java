@@ -1,8 +1,8 @@
-package itttalents.couchshare.model.interfaces;
+package ittalents.couchshare.model.interfaces;
 
 
 import ittalents.couchshare.model.POJO.User;
-import ittalents.couchshare.model.exception.UserException;
+import ittalents.couchshare.model.exceptions.UserException;
 
 public interface IUserDao {
 	public int registerUser(User user)  throws UserException ;

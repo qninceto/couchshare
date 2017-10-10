@@ -14,7 +14,7 @@ public abstract class AbstractCityDAO extends AbstractDBConnDAO {
 							+ cityName + "' and c.country_name='" + countryName + "';");
 			resultSet.next();
 			int id = resultSet.getInt(1);
-
+			System.out.println("*"+id);
 			return id;
 
 		} catch (SQLException e) {
@@ -43,7 +43,7 @@ public abstract class AbstractCityDAO extends AbstractDBConnDAO {
 	public static String getCountryName(int cityId) {
 		try {
 			Statement statement = getCon().createStatement();
-			ResultSet resultSet = statement.executeQuery("select c.country_name from cities city join countries on(city.countries_id=c.id) where city.id="+cityId);
+			ResultSet resultSet = statement.executeQuery("select c.country_name from cities city join countries c on(city.countries_id=c.id) where city.id="+cityId);
 			resultSet.next();
 			String name = resultSet.getString(1);
 

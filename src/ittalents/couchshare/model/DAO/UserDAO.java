@@ -9,11 +9,12 @@ import java.text.SimpleDateFormat;
 import java.util.Scanner;
 
 import ittalents.couchshare.model.POJO.Event;
+import ittalents.couchshare.model.POJO.Post;
 import ittalents.couchshare.model.POJO.User;
-import ittalents.couchshare.model.exception.EventException;
-import ittalents.couchshare.model.exception.UserException;
-import itttalents.couchshare.model.interfaces.IEventDAO;
-import itttalents.couchshare.model.interfaces.IUserDao;
+import ittalents.couchshare.model.exceptions.EventException;
+import ittalents.couchshare.model.exceptions.UserException;
+import ittalents.couchshare.model.interfaces.IEventDAO;
+import ittalents.couchshare.model.interfaces.IUserDao;
 
 public class UserDAO extends AbstractDBConnDAO implements IUserDao {
 
@@ -33,17 +34,48 @@ public class UserDAO extends AbstractDBConnDAO implements IUserDao {
 	private static final String INSERT_USER_INTO_DB = "INSERT into users values(null,?,?,?,?,?,null,?,"
 			+ "?,null,null,?,null,null,null,null,null,null,null,null);";
 
-	public void createEvent(int userId,Event event) throws EventException, UserException{
-		IEventDAO eventDao =new EventDAO();
-			eventDao.addEvent(event);
-			this.joinEvent(event.getId(), userId);
+	
+	////////////////////////////////////////YANA:
+	// TODO add post to event--->????
+	// check if request is expired--->thread!/AJAX?
+	// user:send a request?
+	// user:accept request?
+	// user:deny request?
+	// GET LIST OF ALL USERS FROM A CITY--->SORTING,add filters
+	
+	public boolean updateEvent(int userId, Event event) throws EventException, UserException {
+		if (userId == event.getCreator().getId()) {
+			new EventDAO().updateEvent(event);
+			return true;
+		}else {
+			throw new UserException("This event doesn`t belong to this user!");
+		}
 	}
 	
+	public boolean cancelEvent(int userId, Event event) throws EventException, UserException {
+		Scanner sc = new Scanner(System.in);
+		System.out.println("Are you sure you want to cancel the event?");
+		String answer = sc.next();
+		if (answer.toLowerCase().equals("yes")) {
+			if (userId == event.getCreator().getId()) {
+				System.out.println(new EventDAO().removeEvent(event.getId()));
+			} else
+				throw new UserException("This event doesn`t belong to this user!");
+		}
+		return false;
+	}
+
+	public void createEvent(int userId, Event event) throws EventException, UserException {
+		IEventDAO eventDao = new EventDAO();
+		eventDao.addEvent(event);
+		this.joinEvent(event.getId(), userId);
+	}
+
 	public boolean joinEvent(int eventId, int userId) throws UserException {
 		Statement statement;
 		try {
 			statement = getCon().createStatement();
-			//TODO 
+			// TODO if statement or syso
 			statement.executeUpdate("insert into events_participants values(" + userId + "," + eventId + ");");
 			return true;
 		} catch (SQLException e) {
@@ -56,14 +88,17 @@ public class UserDAO extends AbstractDBConnDAO implements IUserDao {
 		Statement statement;
 		try {
 			statement = getCon().createStatement();
-			//TODO 
-			statement.executeUpdate("delete from events_participants where users_id="+eventId+" and events_id="+userId);
+			// TODO if statement or syso
+			statement.executeUpdate(
+					"delete from events_participants where users_id=" + eventId + " and events_id=" + userId);
 			return true;
 		} catch (SQLException e) {
 			e.printStackTrace();
 			throw new UserException("Couldnt leave the event with id" + eventId + " succesfully", e);
 		}
 	}
+	///////////////////////////////////////FIRAS:
+	
 	public enum Sections {
 		occupation, education, about_me, resons_to_surf, interests, HOME_DESCRIPTION
 	}
@@ -97,52 +132,46 @@ public class UserDAO extends AbstractDBConnDAO implements IUserDao {
 		}
 	}
 
-	private enum stringThatToGetThereId{
-		GENDER ("genders","gender"),
-		HOSTINGAVAILABILITIES ("hosting_availabilities","status"),
-		City ("cities","city_name"),
-		LANGUEGE ("languages","language_name"),
-		Country ("countries","country_name")
-		
-		
-		;
-		
-		
-		private final String first;
-	    private final String second;
-	    private stringThatToGetThereId(String first,String second){
-	    	this.first = first;
-	    	this.second=second;
-	    }
-	    	  public String getfirst() {
-	    	        return first;
-	    	    }
+	private enum stringThatToGetThereId {
+		GENDER("genders", "gender"), HOSTINGAVAILABILITIES("hosting_availabilities", "status"), City("cities",
+				"city_name"), LANGUEGE("languages", "language_name"), Country("countries", "country_name");
 
-	    	    public String getSecond() {
-	    	        return second;
-	    	    }
-	    
+		private final String first;
+		private final String second;
+
+		private stringThatToGetThereId(String first, String second) {
+			this.first = first;
+			this.second = second;
+		}
+
+		public String getfirst() {
+			return first;
+		}
+
+		public String getSecond() {
+			return second;
+		}
+
 	}
-	private int gitIdFromString(String newInfo,stringThatToGetThereId string) {
+
+	private int gitIdFromString(String newInfo, stringThatToGetThereId string) {
 		Statement stmt = null;
 		ResultSet result = null;
 
 		try {
 			stmt = getCon().createStatement();
-			result = stmt.executeQuery("select id from "+string.getfirst()+" where "+string.getSecond()+" like '%" + newInfo + "%';");
+			result = stmt.executeQuery("select id from " + string.getfirst() + " where " + string.getSecond()
+					+ " like '%" + newInfo + "%';");
 			result.next();
 			return result.getInt("id");
 
 		} catch (SQLException e) {
 
-			
 			e.printStackTrace();
 		}
 		return 1;
 
 	}
-
-	
 
 	// ACCOUNT and Setting
 	// MY PERSONAL DETAILS
@@ -208,9 +237,9 @@ public class UserDAO extends AbstractDBConnDAO implements IUserDao {
 	}
 	// MY CONTACT DETAILS
 	// END------------------------------------------------------
-    // ACCOUNT DETAILS
-	
-        public void changeUserEmail(int userID) throws UserException {
+	// ACCOUNT DETAILS
+
+	public void changeUserEmail(int userID) throws UserException {
 
 		try {
 			if (passwordValidation(userID)) {
@@ -330,7 +359,9 @@ public class UserDAO extends AbstractDBConnDAO implements IUserDao {
 		}
 
 	}
-//	myProfile END+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+	// myProfile
+	// END+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 	public boolean passwordValidation(int userID) throws UserException {
 		Statement stmt = null;
 		ResultSet result = null;
@@ -348,13 +379,14 @@ public class UserDAO extends AbstractDBConnDAO implements IUserDao {
 				return true;
 			}
 		} catch (SQLException e) {
-			
+
 			e.printStackTrace();
 			throw new UserException("wrong password  ", e);
 		}
 		return false;
 
 	}
+
 	public void UserAddLanguegeFluent(int userID, String languege) throws UserException {
 		try {
 			PreparedStatement ps = getCon().prepareStatement("insert into users_languages_fluent values(?,?);");
@@ -369,6 +401,7 @@ public class UserDAO extends AbstractDBConnDAO implements IUserDao {
 		}
 
 	}
+
 	public void UserAddLanguegeLearning(int userID, String languege) throws UserException {
 		try {
 			PreparedStatement ps = getCon().prepareStatement("insert into users_languages_learning values(?,?);");
@@ -382,8 +415,8 @@ public class UserDAO extends AbstractDBConnDAO implements IUserDao {
 			throw new UserException("wrong languege name ", e);
 		}
 
-	}	
-	
+	}
+
 	public void UserAddLivedCountries(int userID, String Country) throws UserException {
 		try {
 			PreparedStatement ps = getCon().prepareStatement("insert into users_lived_countries values(?,?);");
@@ -398,7 +431,7 @@ public class UserDAO extends AbstractDBConnDAO implements IUserDao {
 		}
 
 	}
-	
+
 	public void UserAddVistedCountries(int userID, String country) throws UserException {
 		try {
 			PreparedStatement ps = getCon().prepareStatement("insert into users_visited_countries values(?,?);");
@@ -411,12 +444,13 @@ public class UserDAO extends AbstractDBConnDAO implements IUserDao {
 			e.printStackTrace();
 			throw new UserException("wrong country name ", e);
 		}
-		
-}	
-	public  User getUserById (int userId) throws UserException{
+
+	}
+
+	public User getUserById(int userId) throws UserException {
 		try {
-			PreparedStatement ps = getCon().prepareStatement("select *from users where id ="+ userId);
-//			ps.setInt(1, userId);
+			PreparedStatement ps = getCon().prepareStatement("select *from users where id =" + userId);
+			// ps.setInt(1, userId);
 			ResultSet result = ps.executeQuery();
 			result.next();
 			int id = result.getInt(1);
@@ -425,9 +459,9 @@ public class UserDAO extends AbstractDBConnDAO implements IUserDao {
 			String email = result.getString(4);
 			String firstName = result.getString(5);
 			String lastName = result.getString(6);
-			Date dateOfBirth= result.getDate(8);
-			String gender =getStringbyId(result.getInt(9), stringThatToGetThereId.GENDER);
-			String city =getStringbyId(result.getInt(12),stringThatToGetThereId.City);
+			Date dateOfBirth = result.getDate(8);
+			String gender = getStringbyId(result.getInt(9), stringThatToGetThereId.GENDER);
+			String city = getStringbyId(result.getInt(12), stringThatToGetThereId.City);
 
 			return new User(id, userName, userPassword, email, firstName, lastName, dateOfBirth, gender, city);
 		} catch (SQLException e) {
@@ -435,65 +469,58 @@ public class UserDAO extends AbstractDBConnDAO implements IUserDao {
 			throw new UserException("Can't find an author with ID : " + userId, e);
 		}
 	}
-	private String getStringbyId(int id, stringThatToGetThereId type){
+
+	private String getStringbyId(int id, stringThatToGetThereId type) {
 		Statement stmt = null;
 		ResultSet result = null;
 
 		try {
 			stmt = getCon().createStatement();
-			result = stmt.executeQuery("select "+type.getSecond()+" from "+type.getfirst()+" where id = " + id + ";");
+			result = stmt.executeQuery(
+					"select " + type.getSecond() + " from " + type.getfirst() + " where id = " + id + ";");
 			result.next();
 			return result.getString(type.getSecond());
-		
-	}
-		catch (Exception e) {
-			new UserException("there is no such String id",e);
+
+		} catch (Exception e) {
+			new UserException("there is no such String id", e);
 		}
 		return "null";
 	}
-	
 
-	public void addFriends(int myId,String email) throws UserException{
-		
-			try {
-				PreparedStatement ps = getCon().prepareStatement("insert into users_friends values(?,?);");
-
-				ps.setInt(1, myId);
-				ps.setInt(2,gitUserIdByEmail(email));
-
-        	
-				
-				ps.executeUpdate();
-				
-			} catch (SQLException e) {
-
-				e.printStackTrace();
-				throw new UserException("somthing went wrong try again later", e);
-			}
-			
-	}	
-		
-	public int gitUserIdByEmail(String email){
-		Statement stmt = null;
-		ResultSet result = null;
-		
+	public void addFriends(int myId, String email) throws UserException {
 
 		try {
-			PreparedStatement ps = getCon().prepareStatement("select id from users where email = '"+email+"';");
-//            ps.setInt(1, userId);
-			 result = ps.executeQuery();
-	        result.next();
+			PreparedStatement ps = getCon().prepareStatement("insert into users_friends values(?,?);");
+
+			ps.setInt(1, myId);
+			ps.setInt(2, gitUserIdByEmail(email));
+
+			ps.executeUpdate();
+
+		} catch (SQLException e) {
+
+			e.printStackTrace();
+			throw new UserException("somthing went wrong try again later", e);
+		}
+
+	}
+
+	public int gitUserIdByEmail(String email) {
+		Statement stmt = null;
+		ResultSet result = null;
+
+		try {
+			PreparedStatement ps = getCon().prepareStatement("select id from users where email = '" + email + "';");
+			// ps.setInt(1, userId);
+			result = ps.executeQuery();
+			result.next();
 			int a = result.getInt(1);
 			return result.getInt("id");
-		
-	}
-		catch (Exception e) {
-			new UserException("there is no such email",e);
+
+		} catch (Exception e) {
+			new UserException("there is no such email", e);
 		}
 		return 0;
 	}
-	
-	
-
 
 }

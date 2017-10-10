@@ -1,4 +1,4 @@
-package ittalents.couchshare.model.exception;
+package ittalents.couchshare.model.exceptions;
 
 public class UserException extends Exception {
 
