@@ -156,7 +156,7 @@ public class RequestDAO extends AbstractDBConnDAO implements IRequestDAO {
 		Statement statement;
 		try {
 			Connection c = AbstractDBConnDAO.getCon();
-			statement = c.createStatement();+
+			statement = c.createStatement();
 			ResultSet resultSet = statement
 					.executeQuery(SELECT_ALL_REQUESTS_RECEIVED_BY_USER +  userId + ";");
 

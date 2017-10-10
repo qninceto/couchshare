@@ -9,7 +9,7 @@ import java.sql.SQLException;
 import org.junit.Test;
 
 import ittalents.couchshare.model.DAO.UserDAO;
-import ittalents.couchshare.model.DAO.UserDAO.Sections;
+//import ittalents.couchshare.model.DAO.UserDAO.Sections;
 import ittalents.couchshare.model.DAO.UserDAO.git;
 import ittalents.couchshare.model.POJO.User;
 import ittalents.couchshare.model.exceptions.UserException;

@@ -9,6 +9,7 @@ import ittalents.couchshare.model.POJO.Post;
 import ittalents.couchshare.model.POJO.User;
 import ittalents.couchshare.model.exceptions.PostException;
 import ittalents.couchshare.model.exceptions.UserException;
+import ittalents.couchshare.model.interfaces.IUserDao;
 
 public class PostDAO extends AbstractDBConnDAO {
 	
@@ -30,7 +31,8 @@ public class PostDAO extends AbstractDBConnDAO {
 				return id.getInt(1);
 			} catch (SQLException e) {
 				e.printStackTrace();
-				throw new PostException("Can't add an post", e);
+
+     			throw new PostException("Can't add a post", e);
 			}
 		}
 		return 0;

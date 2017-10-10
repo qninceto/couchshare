@@ -15,6 +15,28 @@ public class AddAndModifyEventDemo {
 	//leave event
 	
 	//join event	
+/*users:
+ * 1
+2
+4
+5
+8
+9
+ */
+
+	/*events
+	 * 1
+2
+7
+8
+9
+10
+11
+12
+13
+14
+	 */
+	
 	public static void main(String[] args) throws UserException, EventException {
 		Scanner sc = new Scanner(System.in);
 		System.out.println("Enter user id: ");

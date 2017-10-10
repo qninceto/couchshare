@@ -6,6 +6,8 @@ import java.time.LocalDateTime;
 import java.util.Calendar;
 
 public class Post {
+	
+
 	private int id;
 	private String content;
 	private User author;
@@ -39,5 +41,10 @@ public class Post {
 
 	public Timestamp getTimeOfPosting() {
 		return timeOfPosting;
+	}
+	
+	@Override
+	public String toString() {
+		return "Post content=" + content + "\n, author=" + author + "\n, timeOfPosting=" + timeOfPosting + ".";
 	}
 }

@@ -31,7 +31,7 @@ public static void main(String[] args) throws RequestException, PostException, U
 	//user approve
 	
 	//user deny
-	new RequestDAO().updateRequstToDenied(new RequestDAO().getRequestById(3));
+	new RequestDAO().updateRequstToAccepted(new RequestDAO().getRequestById(8));
 }
 
 }
