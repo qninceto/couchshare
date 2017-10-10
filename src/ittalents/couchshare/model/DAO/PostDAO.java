@@ -5,16 +5,16 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import ittalents.couchshare.model.DAO.UserDAO.git;
 import ittalents.couchshare.model.POJO.Post;
 import ittalents.couchshare.model.POJO.User;
+import ittalents.couchshare.model.exception.PostException;
 import ittalents.couchshare.model.exception.UserException;
 import itttalents.couchshare.model.interfaces.IUserDao;
 
 public class PostDAO extends AbstractDBConnDAO {
 	
 
-	public int addPost(Post post) {
+	public int addPost(Post post) throws PostException {
 		if (post != null) {
 			try {
 				PreparedStatement ps = getCon().prepareStatement("insert into post values(null,?,?,?);",
@@ -31,7 +31,7 @@ public class PostDAO extends AbstractDBConnDAO {
 				return id.getInt(1);
 			} catch (SQLException e) {
 				e.printStackTrace();
-//				throw new PostException("Can't add an post", e);
+     			throw new PostException("Can't add an post", e);
 			}
 		}
 		return 0;

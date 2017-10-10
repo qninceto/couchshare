@@ -14,7 +14,7 @@ public class Reference extends Post {
 	}
 	
 	public Reference(boolean wouldReccomend, String travilingType, User reciever,String content, User author) {
-		this( content,  author);
+		super(content, author);
 		this.wouldReccomend = wouldReccomend;
 		this.travilingType = travilingType;
 //		this.post = post;
@@ -32,4 +32,11 @@ public class Reference extends Post {
 	public User getReciever() {
 		return Reciever;
 	}
+
+	@Override
+	public String toString() {
+		return super.getAuthor()+"\n" +super.getContent() +
+				" \n wouldReccomend=" + wouldReccomend + "\n travilingType=" + travilingType + ".";
+	}
+	
 }

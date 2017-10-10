@@ -9,11 +9,13 @@ import java.sql.Statement;
 import ittalents.couchshare.model.POJO.Post;
 import ittalents.couchshare.model.POJO.Reference;
 import ittalents.couchshare.model.POJO.User;
+import ittalents.couchshare.model.exception.PostException;
+import ittalents.couchshare.model.exception.ReferenceException;
 import ittalents.couchshare.model.exception.UserException;
 
 public class ReferenceDAO extends AbstractDBConnDAO {
 
-	public void addReference(Reference reference) {
+	public void addReference(Reference reference) throws ReferenceException, PostException {
 		if (reference != null) {
 			try {
 				int i=new PostDAO().addPost(new Post(reference.getContent(), reference.getAuthor()));
@@ -27,31 +29,35 @@ public class ReferenceDAO extends AbstractDBConnDAO {
 
 			} catch (SQLException e) {
 				e.printStackTrace();
-				// throw new PostException("Can't add an post", e);
+				throw new ReferenceException("Can't add an post", e);
 			}
 		}
 	}
-//
-//	public Reference getReferenceById(int refeerenceId) throws UserException {
+
+//	public Reference getReferenceById(int userId) throws UserException, ReferenceException {
 //		try {
-//			PreparedStatement ps = getCon().prepareStatement("select *from reference where id =" + refeerenceId);
+//			PreparedStatement ps = getCon().prepareStatement("select *  from reference r join post p on (p.id=r.post_id)where r.receiver = "+userId+";");
 //			// ps.setInt(1, userId);
 //			ResultSet result = ps.executeQuery();
 //			result.next();
 //			boolean wouldReccomend = result.getBoolean(1);
 //			String travilingType = getTravilingTypeById(result.getInt(2));
-//			Post post = new PostDAO().getPostById(result.getInt(3));
+//			
 //
 //			User reciever = new UserDAO().getUserById(result.getInt(4));
+//			String content = result.getString(6);
+//			User author = new UserDAO().getUserById(result.getInt(8));
 //
-//			return new Reference(wouldReccomend, travilingType, post, reciever);
+//			return new Reference(wouldReccomend, travilingType, reciever, content, author);
 //		} catch (SQLException e) {
 //			e.printStackTrace();
-//			throw new UserException("Can't find an Reference with ID : " + refeerenceId, e);
+//			throw new ReferenceException("Can't find an Reference with ID : " + userId, e);
 //		}
 //	}
+	
+	
 
-	private String getTravilingTypeById(int id) {
+	public String getTravilingTypeById(int id) {
 		Statement stmt = null;
 		ResultSet result = null;
 

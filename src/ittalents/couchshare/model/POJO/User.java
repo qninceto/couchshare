@@ -25,6 +25,7 @@ public class User {
 	private String interests;
 	private int maxGuests;
 	private boolean smokingAllowed;
+	private String homeDiscreption;
 	private String currentHostingAvailability;
 	private Timestamp dateOfRegistration;
 
@@ -154,6 +155,18 @@ public class User {
 		this.dateOfBirth = dateOfBirth;
 	}
 
+	public void setDateOfRegistration(Timestamp dateOfRegistration) {
+		this.dateOfRegistration = dateOfRegistration;
+	}
+
+	public String getHomeDiscreption() {
+		return homeDiscreption;
+	}
+
+	public void setHomeDiscreption(String homeDiscreption) {
+		this.homeDiscreption = homeDiscreption;
+	}
+
 	public void setGender(String gender) {
 		this.gender = gender;
 	}
@@ -196,7 +209,7 @@ public class User {
 
 	@Override
 	public String toString() {
-		return "User [userName=" + userName + ", city=" + city + "]";
+		return "User Email "+email+" User userName= " + userName + ", city= " + city + ".";
 
 	}
 

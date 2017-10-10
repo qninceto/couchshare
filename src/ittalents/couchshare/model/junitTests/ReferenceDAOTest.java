@@ -9,12 +9,14 @@ import ittalents.couchshare.model.DAO.ReferenceDAO;
 import ittalents.couchshare.model.DAO.UserDAO;
 import ittalents.couchshare.model.POJO.Post;
 import ittalents.couchshare.model.POJO.Reference;
+import ittalents.couchshare.model.exception.PostException;
+import ittalents.couchshare.model.exception.ReferenceException;
 import ittalents.couchshare.model.exception.UserException;
 
 public class ReferenceDAOTest {
 
 	@Test
-	public void testAddReference() throws UserException {
+	public void testAddReference() throws UserException, ReferenceException, PostException {
 		
 		new ReferenceDAO().addReference(new Reference(true, "host", new UserDAO().getUserById(8), "fuck you", new UserDAO().getUserById(1)));
 		
